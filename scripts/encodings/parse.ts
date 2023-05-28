@@ -8,8 +8,9 @@ import { parseZapfDingbatsOrSymbol } from './parseZapfDingbatsOrSymbol';
 
 const compressJson = (json: string) => {
   const jsonBytes = json.split('').map((c) => c.charCodeAt(0));
+  const uint8Array = new Uint8Array(jsonBytes);
   const base64DeflatedJson = JSON.stringify(
-    base64.encode(pako.deflate(jsonBytes)),
+    base64.encode(pako.deflate(uint8Array)),
   );
   return base64DeflatedJson;
 };
